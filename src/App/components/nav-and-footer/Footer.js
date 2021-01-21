@@ -1,0 +1,39 @@
+import React from 'react';
+import github from '../../images/github.png';
+import twitter from '../../images/twitter.png';
+import linkedin from '../../images/linkedin.png';
+import { StyledFooter } from './style';
+
+const Footer = () => {
+    return (
+        <>
+            <StyledFooter>
+                <div className="created-by">
+                    <p>Created by: Caleb Coe</p>
+                </div>
+
+                <div className="social-links">
+                    <a href="https://github.com/SimpleContributor"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <img alt="Github logo link" src={github}></img>
+                    </a>
+
+                    <a href="https://twitter.com/caleb_coe"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <img alt="Twitter logo link" src={twitter}></img>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/caleb-coe/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <img alt="LinkedIn logo link" src={linkedin}></img>
+                    </a>
+                </div>
+            </StyledFooter>
+        </>
+    ) 
+}
+
+export default Footer;
