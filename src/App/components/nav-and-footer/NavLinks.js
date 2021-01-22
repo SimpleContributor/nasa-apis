@@ -16,8 +16,8 @@ const NavLinks = ({ open, setOpen }) => {
             <Link to="/" className="nav-links" onClick={handleClick}>
                 <li>Home</li>
             </Link>
-            <Link to="/photo-generator" className="nav-links" onClick={handleClick}>
-                <li>Photo Generator</li>
+            <Link to="/photo-of-the-day" className="nav-links" onClick={handleClick}>
+                <li>Space Photos</li>
             </Link>
             <Link to="/about" className="nav-links" onClick={handleClick}>
                 <li>About</li>
