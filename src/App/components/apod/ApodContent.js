@@ -33,7 +33,7 @@ const HomeContent = ({ photo }) => {
                 </div>
                 <div className="apod">
                     <h3>Astronomical Photo of the Day</h3>
-                    <img alt="This is the photo of the day from Nasa." className="nasa-photo" src={photo.url}></img>
+                    <img alt="Nasa Api call" className="nasa-photo" src={photo.url}></img>
                     <h3>{photo.title}</h3>
                     <p className="photo-explanation">{photo.explanation}</p>
                 </div>

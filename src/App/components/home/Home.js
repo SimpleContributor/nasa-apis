@@ -12,14 +12,34 @@ const HomeWrapper = styled.div`
 
     background-color: #ccc;
     margin: 0;
-    min-height: 1600px;
+    min-height: 100vh;
     width: auto;
 `
 
 class Home extends Component {
+    state = {
+        isLoaded: false,
+        weather: {}
+    }
+
+    async componentDidMount() {
+        const response = await nasa.get('insight_weather/', {
+            params: {
+                version: 1.0,
+                feedtype: "json"
+            }
+        })
+
+        // Log the season from data 6 days ago
+        // Use a loop to iterate keys and set values for each of the 7 days
+        // This will help set weather tiles for each day
+        
+        this.setState({ isLoaded: true, weather: response.data });
+    }
 
     
     render() {
+        const { isLoaded, weather } = this.state
         return(        
             <motion.div
                 initial={{ opacity: 0, y: "100%" }}
@@ -29,7 +49,12 @@ class Home extends Component {
             >
                 <HomeWrapper>
                     <Navigation />
-                        <HomeContent />
+                        {
+                            isLoaded ? 
+                                <HomeContent weather={weather}/> :
+                                <div>Loading...</div>
+                        }
+                        
                     <Footer />
                 </HomeWrapper>
             </motion.div>  

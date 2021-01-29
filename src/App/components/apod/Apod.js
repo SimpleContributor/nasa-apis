@@ -22,7 +22,7 @@ class Apod extends Component {
     }
 
     async componentDidMount() {
-        const response = await nasa.get('/apod')
+        const response = await nasa.get('planetary/apod/')
         console.log(response.data);
         this.setState({ photo: response.data })
     }

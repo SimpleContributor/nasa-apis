@@ -134,7 +134,7 @@ export const StyledFooter = styled.div`
     bottom: 0;
     display: grid;
     grid-template-columns: 1fr 3fr;
-    height: 120px;
+    height: 60px;
     left: 0;
     padding: 16px 0;
     position: absolute;
@@ -162,7 +162,7 @@ export const StyledFooter = styled.div`
     }
 
     .social-links img {
-        width: 80px;
+        width: 65px;
     }
 
     @media (max-width: 1200px) {
