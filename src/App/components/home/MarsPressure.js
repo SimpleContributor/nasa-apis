@@ -15,6 +15,7 @@ const StyledMarsPressure = styled.div`
 `
 
 const MarsPressure = ({ weather }) => {
+    
     // Remove the last two keys from the weather object so only the Sol numbers are mapped
     delete weather["sol_keys"];
     delete weather["validity_checks"];
@@ -23,7 +24,7 @@ const MarsPressure = ({ weather }) => {
                     key={i}
                     sol={sol}
                     weather={weather}
-                    i={i+762}/>
+                    i={i}/>
     })
 
     return (

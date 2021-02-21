@@ -16,13 +16,20 @@ const StyledTile = styled.div`
 `
 
 const MarsTile = ({ sol, weather, i }) => {
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let month = parseInt(weather[sol].First_UTC.slice(5,7));
     let day = weather[sol].First_UTC.slice(8, 10);
 
+    let d = weather[sol].Last_UTC.slice(0, 10);
+    let date = new Date(d);
+    let dateDay = dayNames[date.getDay()];
+
     return (
         <StyledTile>
-            <h3>Sol {i}</h3>
+            
+            <h3>Sol {sol}</h3>
+            <p>{dateDay}</p>
             <p>{months[month-1]} {day}</p>
             <hr/>
             <p>High: {weather[sol].PRE.mx.toFixed(1)} atm</p>
