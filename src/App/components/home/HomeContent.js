@@ -33,7 +33,7 @@ const HomeContent = ({ weather }) => {
                         Check out the Photo Generator to see astronomical photos.
                     </p>
                 </div>
-                <MarsPressure className="meh" weather={weather}/>
+                <MarsPressure weather={weather}/>
             </HCWrapper>
         )
 }

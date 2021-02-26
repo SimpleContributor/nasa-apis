@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import Navigation from '../nav-and-footer/Navigation';
 import Footer from '../nav-and-footer/Footer';
@@ -16,30 +16,43 @@ const HomeWrapper = styled.div`
     width: auto;
 `
 
-class Home extends Component {
-    state = {
-        isLoaded: false,
-        weather: {}
-    }
+function Home() {
+    const [loaded, setLoaded] = useState(false);
+    const [weather, setWeather] = useState({});
+    // state = {
+    //     isLoaded: false,
+    //     weather: {}
+    // }
 
-    async componentDidMount() {
-        const response = await nasa.get('insight_weather/', {
-            params: {
-                version: 1.0,
-                feedtype: "json"
-            }
-        })
+    useEffect(() => {
+        const retrieveResponse = async () => {
+            const response = await nasa.get('insight_weather/' , {
+                params: {
+                    version: 1.0,
+                    feedtype: "json"
+                }
+            })
+            setLoaded(true);
+            setWeather(response.data);
+        }
 
-        // Log the season from data 6 days ago
-        // Use a loop to iterate keys and set values for each of the 7 days
-        // This will help set weather tiles for each day
+        retrieveResponse();
+    }, [])
+
+    // async componentDidMount() {
+    //     const response = await nasa.get('insight_weather/', {
+    //         params: {
+    //             version: 1.0,
+    //             feedtype: "json"
+    //         }
+    //     })
         
-        this.setState({ isLoaded: true, weather: response.data });
-    }
+    //     this.setState({ isLoaded: true, weather: response.data });
+    // }
 
     
-    render() {
-        const { isLoaded, weather } = this.state
+    // render() {
+        // const { isLoaded, weather } = this.state
         return(        
             <motion.div
                 initial={{ opacity: 0, y: "100%" }}
@@ -50,7 +63,7 @@ class Home extends Component {
                 <HomeWrapper>
                     <Navigation />
                         {
-                            isLoaded ? 
+                            loaded ? 
                                 <HomeContent weather={weather}/> :
                                 <div>Loading...</div>
                         }
@@ -59,7 +72,7 @@ class Home extends Component {
                 </HomeWrapper>
             </motion.div>  
         )
-    }
+    // }
 }
 
 export default Home;

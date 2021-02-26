@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import Navigation from '../nav-and-footer/Navigation';
 import ApodContent from './ApodContent';
@@ -16,19 +16,29 @@ const ApodWrapper = styled.div`
     width: auto;
 `;
 
-class Apod extends Component {
-    state = {
-        photo: ''
-    }
+function Apod() {
+    const [photo, setPhoto] = useState('');
+    // state = {
+    //     photo: ''
+    // }
 
-    async componentDidMount() {
-        const response = await nasa.get('planetary/apod/')
-        console.log(response.data);
-        this.setState({ photo: response.data })
-    }
+    useEffect(() => {
+        const retrievePhoto = async () => {
+            const response = await nasa.get('planetary/apod/');
+            setPhoto(response.data);
+        }
+
+        retrievePhoto();
+    }, [])
+
+    // async componentDidMount() {
+    //     const response = await nasa.get('planetary/apod/')
+    //     console.log(response.data);
+    //     this.setState({ photo: response.data })
+    // }
 
 
-    render() {
+    // render() {
         return(        
             <motion.div
                 initial={{ opacity: 0, y: "100%" }}
@@ -39,13 +49,13 @@ class Apod extends Component {
 
                     <Navigation />
                     <ApodWrapper>
-                        <ApodContent photo={this.state.photo} />
+                        <ApodContent photo={photo} />
                     </ApodWrapper>
                     <Footer />
 
             </motion.div>  
         )
-    }
+    // }
 }
 
 export default Apod;
